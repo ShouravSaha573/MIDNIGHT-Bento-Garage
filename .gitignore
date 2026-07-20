@@ -1,0 +1,25 @@
+# Database secrets
+config/database.local.php
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Private/local files
+.agents/
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.cache
+.DS_Store
+Thumbs.db
+
+# Private credentials
+LOCAL_ADMIN_CREDENTIALS.txt
+
+# Archives
+*.zip

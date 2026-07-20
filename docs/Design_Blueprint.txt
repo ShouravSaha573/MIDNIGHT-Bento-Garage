@@ -1,0 +1,1354 @@
+Sunrise Coral Glass — Complete Design & Development Blueprint
+
+এই document অনুযায়ী “Midnight Bento Garage — Sunrise Coral Glass” design ও project build করলে assignment-এর functionality, structure, visual consistency এবং development planning একসঙ্গে maintain করা যাবে।
+
+Assignment-এর core requirement হলো: client appointment form পূরণ করবে, নির্দিষ্ট তারিখে available mechanic নির্বাচন করবে, প্রতি mechanic প্রতিদিন সর্বোচ্চ ৪টি appointment নিতে পারবে, একই client একই দিনে duplicate appointment নিতে পারবে না এবং Admin appointment list দেখে date ও mechanic পরিবর্তন করতে পারবে। Projectটি HTML, CSS, JavaScript, PHP ও MySQL দিয়ে তৈরি এবং online server-এ চালু থাকতে হবে।
+
+1. Project Identity
+
+Project name:
+Midnight Bento Garage
+
+Selected visual direction:
+Sunrise Coral Glass
+
+Main concept:
+Dark automotive feeling পুরোপুরি বাদ না দিয়ে website-কে warm, bright, welcoming এবং premium করা হবে।
+
+Design-এর প্রধান বৈশিষ্ট্য:
+- Warm cream ও peach background
+- Coral primary color
+- Cyan secondary accent
+- Frosted white glass cards
+- Dark navy/charcoal text
+- Soft natural shadows
+- Bento-style organized layout
+- Clear mechanic availability
+- Simple appointment flow
+- Bright admin dashboard
+- Automotive workshop identity
+
+Main design goal:
+- Fast booking
+- Clear mechanic availability
+- Easy admin management
+- Bright and professional automotive interface
+
+
+2. Assignment Requirement বনাম Design Enhancement
+
+Generated concept images-এ কিছু additional field দেখা গেছে। তবে implementation করার সময় assignment-এর required features এবং optional visual features আলাদা রাখতে হবে।
+
+Assignment-এর mandatory user fields:
+- Name
+- Address
+- Phone
+- Car License Number
+- Car Engine Number
+- Appointment Date
+- Desired Mechanic
+
+Mandatory admin information:
+- Client Name
+- Phone
+- Car Registration Number
+- Appointment Date
+- Mechanic Name
+
+Admin পরিবর্তন করতে পারবে:
+- Appointment Date
+- Assigned Mechanic
+
+Optional design-only features:
+- Service Type
+- Appointment Time
+- Mechanic Rating
+- Mechanic Expertise
+- Vehicle Model
+- Email Address
+- My Bookings
+- Reports
+- Revenue
+- Estimated Cost
+- Estimated Service Time
+
+এগুলো assignment-এর বাধ্যতামূলক requirement নয়। Simple student project রাখতে চাইলে এগুলো database বা functionality-তে যোগ না করলেও চলবে। Design-এর visual balance বজায় রাখতে প্রয়োজনে static text হিসেবে কিছু রাখা যেতে পারে, তবে core assignment logic complicated করা উচিত নয়।
+
+
+3. Target Users
+
+Client:
+যে ব্যক্তি workshop appointment নিতে website visit করবে।
+
+Client-এর প্রধান কাজ:
+- Form পূরণ করা
+- Appointment date নির্বাচন করা
+- Available mechanic দেখা
+- Desired mechanic নির্বাচন করা
+- Appointment submit করা
+- Success অথবা error message দেখা
+
+Admin:
+Workshop manager অথবা authorized staff।
+
+Admin-এর প্রধান কাজ:
+- Appointment list দেখা
+- Client information দেখা
+- Appointment date পরিবর্তন করা
+- Assigned mechanic পরিবর্তন করা
+- Updated mechanic capacity check করা
+
+
+4. Brand Personality
+
+Warm:
+Coral এবং peach colors interface-কে friendly ও welcoming করবে।
+
+Clear:
+Dark text, light cards এবং যথেষ্ট spacing ব্যবহার করা হবে।
+
+Professional:
+Design bright হলেও childish বা overly decorative হবে না।
+
+Reliable:
+Success, warning এবং error states খুব পরিষ্কার থাকবে।
+
+Automotive:
+Logo, car image, mechanic icons এবং workshop-based headings automotive identity বজায় রাখবে।
+
+
+5. Final Color System
+
+Core colors:
+
+:root {
+    --cream-background: #FFF7F2;
+    --soft-peach: #FFEDE4;
+    --glass-white: rgba(255, 255, 255, 0.72);
+    --glass-strong: rgba(255, 255, 255, 0.90);
+
+    --coral-primary: #FF6A5B;
+    --coral-deep: #E74D3C;
+    --coral-light: #FFD7CF;
+
+    --cyan-accent: #19C7D8;
+    --cyan-light: #DDF8FB;
+
+    --success-green: #22C55E;
+    --warning-amber: #F59E0B;
+    --danger-red: #EF4444;
+
+    --charcoal-text: #0F172A;
+    --secondary-text: #475569;
+    --muted-text: #64748B;
+
+    --white: #FFFFFF;
+    --border-light: rgba(255, 255, 255, 0.78);
+}
+
+Color usage rules:
+
+Coral ব্যবহার হবে:
+- Primary buttons
+- Active navigation
+- Selected mechanic
+- Important headings
+- Main actions
+- Focus border
+
+Cyan ব্যবহার হবে:
+- Information icons
+- Secondary actions
+- Help links
+- Step numbers
+- Optional View Profile button
+
+Green ব্যবহার হবে:
+- Available mechanic
+- Successful booking
+- Valid form field
+- Available capacity
+
+Amber ব্যবহার হবে:
+- Almost full mechanic
+- Warning message
+- Low availability
+
+Red ব্যবহার হবে:
+- Fully booked mechanic
+- Invalid form field
+- Duplicate booking error
+- Blocking error
+
+Dark navy/charcoal ব্যবহার হবে:
+- Main heading
+- Body text
+- Table text
+- Labels
+- Important numbers
+
+
+6. Background Design
+
+Page background solid white হবে না। Soft sunrise gradient ব্যবহার করা হবে।
+
+body {
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(255, 185, 160, 0.35),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(25, 199, 216, 0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #FFF7F2,
+            #FFF1EA
+        );
+}
+
+Background rules:
+- Maximum ২–৩টি soft gradient shape থাকবে।
+- Heavy pattern বা texture ব্যবহার করা যাবে না।
+- Background content-এর সঙ্গে competition করবে না।
+- Bottom section-এ soft coral wave ব্যবহার করা যেতে পারে।
+- Car image-এর পিছনে brighter workshop environment ব্যবহার করা ভালো।
+
+
+7. Glassmorphism System
+
+Glass effect শুধু major card-এ ব্যবহার হবে।
+
+Standard glass card:
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 14px 38px rgba(71, 45, 39, 0.10);
+    border-radius: 20px;
+}
+
+Strong glass card:
+
+.strong-glass-card {
+    background: rgba(255, 255, 255, 0.90);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+}
+
+Glass ব্যবহার করা হবে:
+- Navbar
+- Hero container
+- Appointment form card
+- Workshop capacity card
+- Mechanic availability section
+- Help card
+- How It Works card
+- Admin summary cards
+- Edit modal
+- Mechanic capacity card
+
+Glass ব্যবহার করা হবে না:
+- Individual table row
+- Error message text
+- Dropdown option list
+- Long paragraph
+- Small labels
+- Every single input field background
+
+Important rule:
+সব card-এ equal blur বা glow ব্যবহার করলে design washed-out দেখাবে। তাই glass surface, solid surface এবং transparent background-এর balance রাখতে হবে।
+
+
+8. Typography System
+
+Recommended font:
+External font না ব্যবহার করতে চাইলে:
+
+font-family: Arial, Helvetica, sans-serif;
+
+Google Fonts ব্যবহার করা অনুমোদিত হলে:
+Inter
+
+Heading-এর জন্য চাইলে:
+Poppins
+
+তবে simple student project-এর জন্য একটি font family ব্যবহার করাই ভালো।
+
+Typography scale:
+
+h1 {
+    font-size: 48px;
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 32px;
+    line-height: 1.25;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 21px;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+button {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+Typography rules:
+- Main headings dark navy হবে।
+- Highlighted word coral gradient হতে পারে।
+- Body text muted charcoal হবে।
+- Light background-এ white text ব্যবহার করা যাবে না।
+- Tiny text avoid করতে হবে।
+- Labels clearly visible হতে হবে।
+- Placeholder এবং actual input text-এর color আলাদা হবে।
+
+
+9. Spacing System
+
+৮-pixel based spacing system ব্যবহার করা হবে।
+
+4px
+8px
+12px
+16px
+24px
+32px
+40px
+48px
+64px
+
+Main spacing rules:
+- Page horizontal padding: 24–64px
+- Section gap: 48–64px
+- Card gap: 20–24px
+- Card internal padding: 24–32px
+- Form field gap: 16px
+- Label-to-input gap: 8px
+- Button top margin: 20–24px
+
+কোনো card-এর ভিতরে content edge-এর সঙ্গে লেগে থাকবে না।
+
+
+10. Radius System
+
+--radius-small: 8px;
+--radius-medium: 12px;
+--radius-card: 18px;
+--radius-large: 24px;
+--radius-pill: 999px;
+
+Usage:
+- Input: 10–12px
+- Button: 10–12px
+- Small card: 14–16px
+- Large glass card: 18–24px
+- Badge: pill radius
+- Modal: 20–24px
+
+
+11. Shadow System
+
+Glow-heavy design ব্যবহার করা হবে না।
+
+.card-shadow {
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+.selected-shadow {
+    box-shadow: 0 14px 30px rgba(255, 106, 91, 0.20);
+}
+
+Shadow rules:
+- Default card: subtle shadow
+- Hover card: slightly stronger shadow
+- Modal: elevated shadow
+- Selected mechanic: coral-tinted shadow
+- Error card: red shadow ব্যবহার না করে border যথেষ্ট
+
+
+12. Main Website Structure
+
+User Panel
+|
+|-- Navbar
+|-- Hero and Capacity Section
+|-- Appointment Form
+|-- Mechanic Availability
+|-- Help / How It Works
+`-- Footer
+
+Admin Panel
+|
+|-- Sidebar
+|-- Dashboard Header
+|-- Summary Cards
+|-- Search / Filters
+|-- Appointment Table
+|-- Edit Appointment Modal
+`-- Mechanic Capacity
+
+
+13. User Panel Page Structure
+
+Section 1: Navbar
+
+Navbar glass surface হবে।
+
+Left side:
+- Logo icon
+- MIDNIGHT
+- BENTO GARAGE
+
+Center navigation:
+- Home
+- Book Appointment
+- Mechanics
+- Help
+- Admin
+
+Right side:
+- Book Appointment button
+
+Navbar behavior:
+- Sticky হতে পারে।
+- Active item coral underline পাবে।
+- Hover করলে text coral হবে।
+- Mobile-এ hamburger menu হবে।
+- Admin link clearly separate থাকবে।
+
+
+14. Hero Section
+
+Left side content:
+
+DRIVE SAFE. WE’VE GOT YOU.
+
+Book Your Trusted
+Mechanic Online
+
+Fast, reliable service with expert mechanics.
+Book your appointment in minutes.
+
+“Mechanic Online” coral gradient হতে পারে।
+
+.highlight-text {
+    background: linear-gradient(
+        90deg,
+        #F97316,
+        #FF6A5B,
+        #19C7D8
+    );
+    background-clip: text;
+    color: transparent;
+}
+
+Center/right image:
+- White বা silver premium car
+- Bright modern workshop
+- Clean floor reflection
+- Warm daylight
+- Excessive dark shadows নয়
+
+Hero layout:
+
+Desktop:
+Headline + Car Image + Capacity Card
+
+Tablet:
+Headline and car image
+Capacity card নিচে
+
+Mobile:
+Headline
+Car image
+Capacity card
+
+
+15. Workshop Capacity Card
+
+Card-এ date অনুযায়ী available slot summary দেখানো হবে।
+
+Required information:
+- Total possible capacity
+- Available appointments
+- Booked appointments
+- Fully booked status
+
+প্রতি mechanic সর্বোচ্চ ৪টি booking নিতে পারবে। যদি ৫ জন mechanic থাকে, তাহলে একটি তারিখে maximum capacity হবে:
+
+5 × 4 = 20 appointments
+
+তবে UI-তে real database count ব্যবহার করা হবে।
+
+Donut colors:
+- Green: Available
+- Amber: Booked
+- Red: Full
+
+Example:
+- 12 Total Capacity
+- 7 Available
+- 4 Booked
+- 1 Full
+
+Capacity card decorative chart হলেও actual mechanic availability database result থেকে আসবে।
+
+
+16. Appointment Form Design
+
+Required fields:
+- Full Name
+- Address
+- Phone Number
+- Car License Number
+- Car Engine Number
+- Appointment Date
+- Select Mechanic
+
+Form layout:
+Desktop-এ two-column field arrangement অথবা single vertical card।
+Simple implementation-এর জন্য single-column form সবচেয়ে safe।
+
+Field appearance:
+
+.form-input {
+    width: 100%;
+    padding: 13px 15px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid #E2E8F0;
+    border-radius: 11px;
+    color: #0F172A;
+}
+
+Focus state:
+
+.form-input:focus {
+    border-color: #FF6A5B;
+    box-shadow: 0 0 0 3px rgba(255, 106, 91, 0.14);
+    outline: none;
+}
+
+Form button:
+
+.primary-button {
+    background: linear-gradient(
+        135deg,
+        #FF806F,
+        #FF5B4D
+    );
+    color: white;
+    border: none;
+}
+
+Button text:
+Book Appointment
+
+
+17. Appointment Date Behavior
+
+Date selection-এর পরে mechanic availability refresh হবে।
+
+Correct flow:
+
+User selects date
+        ↓
+JavaScript/PHP sends selected date
+        ↓
+Database counts bookings per mechanic
+        ↓
+Each mechanic's free slots are calculated
+        ↓
+Mechanic cards/dropdown updated
+
+Date rules:
+- Empty date submit করা যাবে না।
+- Past date select করা বন্ধ রাখা ভালো।
+- Date valid format হতে হবে।
+- Mechanic availability নির্বাচিত date অনুযায়ী দেখাতে হবে।
+
+
+18. Mechanic Availability Section
+
+Assignment অনুযায়ী প্রায় ৫ জন senior mechanic থাকবে।
+
+Each mechanic card-এ থাকবে:
+- Avatar or initials
+- Mechanic name
+- Optional short role
+- Free slot count
+- Capacity dots
+- Selection control
+
+Recommended five mechanics:
+- Alex Raj
+- Sam Michael
+- John Davis
+- Mike Chen
+- Ravi Sharma
+
+Names change করা যাবে।
+
+Capacity display:
+
+● ● ● ○
+3 of 4 places available
+
+চারটি dot mechanic-এর daily maximum capacity represent করবে।
+
+Available:
+- Green status
+- Selectable
+
+Almost full:
+- Amber status
+- 1 place available
+- Selectable
+
+Fully booked:
+- Red status
+- 0 places available
+- Disabled
+
+Selected:
+- Coral border
+- Check mark
+- Light coral background
+
+
+19. Mechanic Card States
+
+Available card:
+
+.mechanic-card.available {
+    border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+Selected card:
+
+.mechanic-card.selected {
+    border: 2px solid #FF6A5B;
+    background: rgba(255, 238, 233, 0.90);
+    box-shadow: 0 14px 30px rgba(255, 106, 91, 0.18);
+}
+
+Almost full card:
+
+.mechanic-card.warning {
+    border: 1px solid rgba(245, 158, 11, 0.50);
+    background: rgba(255, 248, 230, 0.88);
+}
+
+Fully booked card:
+
+.mechanic-card.full {
+    border: 1px solid rgba(239, 68, 68, 0.40);
+    background: rgba(255, 240, 240, 0.88);
+    opacity: 0.82;
+}
+
+Fully booked mechanic select করা যাবে না।
+
+
+20. Help / How It Works Section
+
+Assignment-এ basic help facilities থাকতে হবে। তাই help section শুধু decoration নয়; useful information থাকবে।
+
+Three steps:
+1. Fill in your details
+2. Choose appointment date and mechanic
+3. Confirm your booking
+
+Help information:
+- Required fields কী
+- Mechanic unavailable হলে কী করতে হবে
+- Duplicate appointment message-এর অর্থ
+- Admin কখন appointment পরিবর্তন করতে পারে
+
+Help section accordion অথবা simple card হতে পারে।
+
+
+21. Success and Error Feedback
+
+Success:
+Appointment booked successfully!
+Your selected mechanic has been confirmed.
+
+Green toast/card।
+
+Duplicate appointment:
+You already have an appointment on this date.
+
+Amber অথবা red warning।
+
+Fully booked mechanic:
+This mechanic is fully booked.
+Please choose another mechanic or another date.
+
+Red error state।
+
+Invalid field:
+Field-এর নিচে exact error message থাকবে।
+
+Example:
+Phone number must contain numbers only.
+
+
+22. Form Validation
+
+Client-side JavaScript এবং server-side PHP—দুই জায়গায় validation করতে হবে।
+
+Name:
+- Required
+- Empty হতে পারবে না
+- Reasonable length
+
+Address:
+- Required
+- Empty হতে পারবে না
+
+Phone:
+- Required
+- Only numeric characters
+- Reasonable length
+
+Car license number:
+- Required
+- Letters, numbers and basic separators allowed
+
+Car engine number:
+Assignment example অনুযায়ী numeric validation করা যেতে পারে। তবে বাস্তবে engine number alphanumeric হতে পারে। Teacher-এর requirement strictly অনুসরণ করলে numeric-only validation দেওয়া যেতে পারে।
+
+Safe implementation:
+- Letters
+- Numbers
+- Hyphen
+
+কোন format ব্যবহার করা হয়েছে তা code comment-এ explain করতে হবে।
+
+Appointment date:
+- Required
+- Valid date
+- Past date disabled
+
+Mechanic:
+- Required
+- Available mechanic হতে হবে
+
+
+23. Duplicate Appointment Rule
+
+Assignment বলছে একই client নির্দিষ্ট তারিখে আগে appointment নিয়ে থাকলে আবার appointment নিতে পারবে না।
+
+Client identify করার practical rule:
+Phone Number + Appointment Date
+
+Database check:
+
+SELECT COUNT(*)
+FROM appointments
+WHERE phone = ?
+AND appointment_date = ?;
+
+Result ১ বা তার বেশি হলে:
+- Reject appointment
+- Show duplicate warning
+
+
+24. Mechanic Capacity Rule
+
+প্রতি mechanic প্রতিদিন maximum ৪টি appointment নিতে পারবে।
+
+SELECT COUNT(*)
+FROM appointments
+WHERE mechanic_id = ?
+AND appointment_date = ?;
+
+Logic:
+
+Count < 4
+→ Appointment allowed
+
+Count = 4
+→ Mechanic fully booked
+→ Appointment rejected
+
+Frontend display database count-এর সঙ্গে match করতে হবে।
+
+
+25. Admin Dashboard Design
+
+Main layout:
+- Dark Warm Sidebar
+- Bright Glass Main Area
+- White Summary Cards
+- Solid Appointment Table
+- Glass Edit Panel
+- Capacity Card
+
+Sidebar:
+Sidebar dark charcoal রেখে contrast তৈরি করা হবে।
+
+.admin-sidebar {
+    background:
+        linear-gradient(
+            180deg,
+            #27272A,
+            #18181B
+        );
+}
+
+Active menu coral হবে।
+
+Sidebar items:
+- Dashboard
+- Appointments
+- Mechanics
+- Help
+
+Reports assignment requirement নয়; চাইলে বাদ দিতে হবে।
+
+
+26. Admin Summary Cards
+
+চারটি card রাখা যেতে পারে:
+- Total Appointments
+- Today's Appointments
+- Free Slots
+- Fully Booked Mechanics
+
+এগুলো database query থেকে আসবে।
+
+Assignment fulfil করার জন্য summary cards mandatory নয়, কিন্তু admin usability বাড়ায়।
+
+
+27. Admin Appointment Table
+
+Mandatory columns:
+- Client Name
+- Phone
+- Car Registration Number
+- Appointment Date
+- Mechanic Name
+- Action
+
+Optional columns:
+- Status
+- Engine Number
+
+Table background nearly solid white হবে।
+
+.table-container {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+Glass-heavy table ব্যবহার করলে text readability কমে যাবে।
+
+
+28. Admin Edit Appointment Modal
+
+Edit button click করলে modal বা side panel open হবে।
+
+Show করবে:
+- Client Name
+- Phone
+- Car Registration
+- Current Appointment Date
+- Current Mechanic
+
+Editable fields:
+- Appointment Date
+- Assigned Mechanic
+
+Buttons:
+- Cancel
+- Save Changes
+
+Update validation:
+
+Admin date বা mechanic পরিবর্তন করলে:
+- Check client duplicate appointment
+- Check new mechanic capacity
+- Exclude current appointment from count
+- Update only if valid
+
+Important update count rule:
+Current appointment নিজেকে capacity calculation-এ count করবে না।
+
+SELECT COUNT(*)
+FROM appointments
+WHERE mechanic_id = ?
+AND appointment_date = ?
+AND appointment_id != ?;
+
+
+29. Admin Mechanic Capacity Card
+
+প্রতিটি mechanic-এর current selected date-এর availability দেখাবে।
+
+Alex Raj      ● ● ● ○    3/4
+Sam Michael   ● ● ○ ○    2/4
+John Davis    ● ● ● ●    4/4
+Ravi Sharma   ● ○ ○ ○    1/4
+
+Color:
+- Green = available
+- Amber = nearly full
+- Red = full
+- Gray = free slot
+
+
+30. Responsive Design
+
+Desktop: 1200px and above
+- Hero text + car + capacity side-by-side
+- Form and mechanics side-by-side
+- Admin sidebar fixed
+- Wide appointment table
+
+Tablet: 768px–1199px
+- Two-column bento cards
+- Capacity beneath hero
+- Mechanic cards 2 per row
+- Admin sidebar compact
+- Table horizontally scrollable
+
+Mobile: below 768px
+- Single-column layout
+- Navbar becomes hamburger
+- Hero text centered or left aligned
+- Form full width
+- Mechanic cards stacked
+- Full-width buttons
+- Appointment summary below mechanic list
+- Admin table horizontally scrollable
+- Edit modal full screen or near-full width
+
+Suggested breakpoints:
+
+@media (max-width: 1200px) { }
+
+@media (max-width: 992px) { }
+
+@media (max-width: 768px) { }
+
+@media (max-width: 480px) { }
+
+
+31. Hover and Animation Planning
+
+Animations subtle হবে।
+
+Card hover:
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.11);
+}
+
+Button hover:
+
+.primary-button:hover {
+    transform: translateY(-1px);
+    background: #E74D3C;
+}
+
+Selected mechanic:
+- Check mark fade in
+- Border smoothly coral হবে
+- No strong bouncing animation
+
+Toast:
+- Slide from top-right
+- Stay 3–4 seconds
+- Fade out
+
+Avoid:
+- Continuous glowing
+- Fast flashing
+- Large rotation
+- Heavy parallax
+- Excessive moving background
+
+
+32. Button States
+
+Primary coral button-এর states:
+- Default
+- Hover
+- Pressed
+- Disabled
+- Loading
+
+Disabled:
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+Loading:
+- Booking...
+- Saving...
+
+Double submission prevent করতে submit-এর পরে button temporarily disabled হবে।
+
+
+33. Accessibility and Visibility Rules
+
+- Text/background contrast clear হতে হবে।
+- শুধু color দিয়ে status বুঝানো যাবে না; text ও iconও থাকবে।
+- Form label visible থাকবে।
+- Placeholder label-এর replacement হবে না।
+- Button minimum height 44px রাখা ভালো।
+- Keyboard focus visible হতে হবে।
+- Error message field-এর নিচে থাকবে।
+- Mobile touch target যথেষ্ট বড় হবে।
+- Coral button-এর ওপর white text clearly readable হতে হবে।
+- Light glass-এর পিছনে busy image রাখা যাবে না।
+
+
+34. Image Usage Rules
+
+Car image:
+- Hero section-এ maximum একটি main image
+- Bright workshop setting
+- Image optimized করা হবে
+- <img>-এ alt text থাকবে
+- Background image overly large করা যাবে না
+
+Mechanic photos:
+Mechanic photo না থাকলে initials ব্যবহার করা ভালো:
+- AR
+- SM
+- JD
+- MC
+- RS
+
+এতে project সহজ ও consistent হবে।
+
+
+35. Technical Stack
+
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- PHP
+- MySQL
+- XAMPP for local development
+- phpMyAdmin for database
+- Online PHP/MySQL hosting for submission
+
+কোনো advanced framework প্রয়োজন নেই।
+
+Avoid:
+- React
+- Vue
+- Angular
+- Laravel
+- Bootstrap
+- Tailwind
+- jQuery
+- Large chart libraries
+- Complex UI libraries
+
+
+36. Recommended Folder Structure
+
+midnight-bento-garage/
+|
+|-- index.php
+|-- book_appointment.php
+|-- get_availability.php
+|-- help.php
+|
+|-- admin/
+|   |-- index.php
+|   |-- update_appointment.php
+|   `-- get_capacity.php
+|
+|-- config/
+|   `-- database.php
+|
+|-- includes/
+|   |-- header.php
+|   |-- navbar.php
+|   `-- footer.php
+|
+|-- assets/
+|   |-- css/
+|   |   |-- style.css
+|   |   |-- admin.css
+|   |   `-- responsive.css
+|   |
+|   |-- js/
+|   |   |-- script.js
+|   |   `-- admin.js
+|   |
+|   `-- images/
+|       |-- hero-car.webp
+|       `-- logo.png
+|
+`-- database/
+    `-- garage_appointment.sql
+
+Simple project হলে includes folder ছাড়া কম file-ও ব্যবহার করা যাবে।
+
+
+37. Database Structure
+
+Mechanics table:
+
+CREATE TABLE mechanics (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+Appointments table:
+
+CREATE TABLE appointments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    client_name VARCHAR(100) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    phone VARCHAR(30) NOT NULL,
+    car_license VARCHAR(50) NOT NULL,
+    car_engine VARCHAR(50) NOT NULL,
+    appointment_date DATE NOT NULL,
+    mechanic_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (mechanic_id) REFERENCES mechanics(id)
+);
+
+Initial mechanics:
+
+INSERT INTO mechanics (name) VALUES
+('Alex Raj'),
+('Sam Michael'),
+('John Davis'),
+('Mike Chen'),
+('Ravi Sharma');
+
+
+38. Security and Error Handling
+
+PHP database:
+- PDO বা MySQLi prepared statement ব্যবহার করতে হবে।
+- Raw SQL string concatenation করা যাবে না।
+- User input sanitize করতে হবে।
+- Server-side validation mandatory।
+- Database error directly user-কে দেখানো যাবে না।
+
+User-facing error:
+Something went wrong. Please try again.
+
+Development-এর সময় internal error log রাখা যেতে পারে।
+
+
+39. Four Development Phases
+
+Phase 1: Foundation
+- Folder structure
+- Database setup
+- Mechanics table
+- Appointments table
+- Database connection
+- Base color and typography
+- Navbar and page shell
+
+Phase 2: User Booking System
+- Appointment form
+- Date selection
+- Mechanic availability
+- Form validation
+- Duplicate check
+- Capacity check
+- Appointment insert
+- Success/error feedback
+
+Phase 3: Admin Panel
+- Admin layout
+- Appointment list
+- Search/filter if needed
+- Edit modal
+- Date update
+- Mechanic update
+- Capacity validation
+- Mechanic capacity display
+
+Phase 4: Design and Testing
+- Sunrise Coral Glass styling
+- Responsive layout
+- Animations
+- Accessibility check
+- Mobile testing
+- Database testing
+- Online deployment
+- Final cleanup
+
+
+40. Testing Checklist
+
+User form:
+- Empty form submit
+- Invalid phone
+- Invalid engine number
+- No date selected
+- No mechanic selected
+- Available mechanic booking
+- Fully booked mechanic booking
+- Duplicate appointment
+- Successful appointment
+
+Mechanic capacity:
+- 0 bookings
+- 1 booking
+- 2 bookings
+- 3 bookings
+- 4 bookings
+
+Admin update:
+- Change date to available date
+- Change mechanic to available mechanic
+- Change mechanic to full mechanic
+- Change to duplicate client date
+- Save without changes
+
+Responsive testing:
+- Desktop
+- Laptop
+- Tablet
+- Small tablet
+- Mobile
+
+
+41. Features That Should Stay Simple
+
+Assignment student-written ও viva-friendly রাখতে নিচের logic straightforward হবে:
+- Simple PHP functions
+- Simple SQL queries
+- Clear variable names
+- Short JavaScript functions
+- Basic fetch or form submission
+- Meaningful comments
+- No unnecessary class architecture
+- No complex design patterns
+
+
+42. Things to Avoid
+
+- Too much transparency
+- Light text on light glass
+- Excessive coral everywhere
+- Too many gradient colors
+- Overcrowded dashboard
+- Tiny text
+- Extra pages without purpose
+- Fake dynamic data
+- Complex charts
+- Unnecessary login system
+- Unnecessary service-time system
+- Unnecessary payment system
+- Animation-heavy interface
+- Mechanic booking logic only in JavaScript
+
+Mechanic capacity এবং duplicate checking অবশ্যই PHP/MySQL-এ validate করতে হবে। শুধু frontend validation যথেষ্ট নয়।
+
+
+43. Final Visual Structure
+
+User Page:
+
++------------------------------------------+
+| Glass Navbar                             |
++-----------------------------+------------+
+| Hero Text + Bright Car      | Capacity   |
++---------------+--------------------------+
+| Booking Form  | Mechanic Availability    |
++---------------+--------------------------+
+| Help / How It Works                     |
++------------------------------------------+
+| Footer                                  |
++------------------------------------------+
+
+Admin Page:
+
++------------+-----------------------------+
+| Dark       | Summary Cards               |
+| Sidebar    +-----------------------------+
+|            | Search / Filters            |
+|            +----------------+------------+
+|            | Appointment    | Edit Panel |
+|            | Table          | Capacity   |
++------------+----------------+------------+
+
+
+44. Final Design Decision Summary
+
+Theme:
+Sunrise Coral Glass
+
+Background:
+Cream + peach gradient
+
+Primary color:
+Coral
+
+Secondary color:
+Cyan
+
+Main text:
+Dark navy/charcoal
+
+Card design:
+White frosted glass
+
+User page:
+Hero, booking form, availability, help
+
+Admin page:
+Dark sidebar, bright dashboard, solid table
+
+Availability:
+Green, amber, red
+
+Layout:
+Bento grid
+
+Responsive:
+Desktop, tablet, mobile
+
+Technology:
+HTML, CSS, JavaScript, PHP, MySQL
+
+Core booking limit:
+4 appointments per mechanic per date
+
+Duplicate identification:
+Phone number + appointment date
+
+Main goal:
+Bright, clean, easy, professional and assignment-compliant
+
+এই blueprint-টাই Sunrise Coral Glass design-এর final reference হিসেবে ধরে HTML, CSS, JavaScript, PHP এবং MySQL project build করা উচিত।

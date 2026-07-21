@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 const APP_NAME = 'Midnight Bento Garage';
-const APP_BASE_URL = '/Midnight_Bento_Garage_Secure';
+const APP_BASE_URL = '/Midnight_Bento_Garage';
 const SESSION_IDLE_TIMEOUT = 1800;
 const SESSION_ABSOLUTE_TIMEOUT = 28800;
 const SESSION_ROTATION_INTERVAL = 900;
